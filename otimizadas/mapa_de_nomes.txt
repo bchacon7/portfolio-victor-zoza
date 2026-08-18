@@ -1,0 +1,32 @@
+Nome original -> Nome novo (use isso para atualizar o HTML)
+------------------------------------------------------------
+co10.jpg  ->  otimizadas/co10.webp
+co11.jpg  ->  otimizadas/co11.webp
+co12.jpg  ->  otimizadas/co12.webp
+co13.jpg  ->  otimizadas/co13.webp
+co14.jpg  ->  otimizadas/co14.webp
+co15.jpg  ->  otimizadas/co15.webp
+co17.jpg  ->  otimizadas/co17.webp
+co18.jpg  ->  otimizadas/co18.webp
+co19.jpg  ->  otimizadas/co19.webp
+co2.jpg  ->  otimizadas/co2.webp
+co20.jpg  ->  otimizadas/co20.webp
+co21.jpg  ->  otimizadas/co21.webp
+co22.jpg  ->  otimizadas/co22.webp
+co23.jpg  ->  otimizadas/co23.webp
+co24.jpg  ->  otimizadas/co24.webp
+co25.jpg  ->  otimizadas/co25.webp
+co26.jpg  ->  otimizadas/co26.webp
+co27.jpg  ->  otimizadas/co27.webp
+co28.jpg  ->  otimizadas/co28.webp
+co29.jpg  ->  otimizadas/co29.webp
+co3.jpg  ->  otimizadas/co3.webp
+co30.jpg  ->  otimizadas/co30.webp
+co31.jpg  ->  otimizadas/co31.webp
+co32.jpg  ->  otimizadas/co32.webp
+co4.jpg  ->  otimizadas/co4.webp
+co5.jpg  ->  otimizadas/co5.webp
+co6.jpg  ->  otimizadas/co6.webp
+co7.jpg  ->  otimizadas/co7.webp
+co8.jpg  ->  otimizadas/co8.webp
+co9.jpg  ->  otimizadas/co9.webp

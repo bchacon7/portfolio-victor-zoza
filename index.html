@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📷 Victor Zoza</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:url('otimizadas/fundosob.webp') center/cover fixed no-repeat;
+    color:#fff;
+    font-family:'Open Sans', Arial, sans-serif;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:-1;
+}
+
+.font-titulo{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:600;
+}
+
+/* =========================
+   HERO / CABEÇALHO
+========================= */
+.hero{
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-slider{
+    position:absolute;
+    inset:0;
+    z-index:0;
+}
+
+.slide-track{
+    height:100%;
+    width:max-content;
+    display:flex;
+    animation:passarFotos 25s linear infinite;
+}
+
+.slide-track img{
+    width:45vw;
+    min-width:320px;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(100%);
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:rgba(0, 0, 0, 0.55);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:clamp(4rem, 12vw, 10rem);
+    letter-spacing:12px;
+    color:#fff;
+    text-shadow:0 4px 20px rgba(0,0,0,.8);
+}
+
+.hero p{
+    margin-top:0px;
+    color:#ddd;
+    font-size:1.2rem;
+    letter-spacing:1px;
+}
+
+nav{
+    margin-top:25px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:5px;
+}
+
+nav a{
+    color:#bbb;
+    font-size:1rem;
+    letter-spacing:1px;
+    display:inline-block;
+    transition:transform 0.3s ease, color 0.3s ease;
+    padding:5px 12px;
+    text-decoration:none;
+}
+
+nav a:hover{
+    transform:scale(1.1);
+    color:#fff;
+}
+
+@keyframes passarFotos{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+}
+
+/* =========================
+   SEÇÕES (título padrão)
+========================= */
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:2.4rem;
+    letter-spacing:2px;
+}
+
+/* =========================
+   SOBRE
+========================= */
+.sobre-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.sobre-bg{
+    width:100%;
+    height:100%;
+    max-height:600px;
+    object-fit:cover;
+    display:block;
+    border-radius:12px;
+}
+
+.sobre-texto{
+    text-align:left;
+}
+
+.sobre-texto .section-title{
+    text-align:left;
+    margin-bottom:20px;
+}
+
+.sobre-texto p{
+    color:#bbb;
+    line-height:1.7;
+    margin:0;
+}
+
+@media (max-width:768px){
+    .sobre-container{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .sobre-texto .section-title{
+        text-align:center;
+    }
+
+    .sobre-texto p{
+        text-align:center;
+    }
+}
+
+/* =========================
+   PROJETOS EM DESTAQUE
+========================= */
+.projetos-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+}
+
+.projeto-card{
+    position:relative;
+    aspect-ratio:4 / 5;
+    background:#222;
+    border:2px solid #333;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.projeto-card a{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.projeto-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.projeto-card:hover{
+    transform:translateY(-5px);
+    border-color:#fff;
+}
+
+.projeto-legenda{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px 15px 15px;
+    background:linear-gradient(to top, rgba(0,0,0,.85), transparent);
+    opacity:0;
+    transform:translateY(10px);
+    transition:.3s ease;
+    text-align:left;
+    pointer-events:none;
+}
+
+.projeto-card:hover .projeto-legenda{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.projeto-legenda strong{
+    display:block;
+    font-size:1rem;
+    letter-spacing:.5px;
+}
+
+.projeto-legenda span{
+    display:block;
+    font-size:.85rem;
+    color:#ccc;
+    margin-top:2px;
+}
+
+/* =========================
+   GALERIA (masonry)
+========================= */
+.galeria-masonry{
+    columns:4 250px;
+    column-gap:15px;
+}
+
+.foto-card{
+    position:relative;
+    width:100%;
+    margin-bottom:15px;
+    break-inside:avoid;
+    border-radius:12px;
+    overflow:hidden;
+    background:#1a1a1a;
+    border:1px solid #222;
+}
+
+.foto-card img{
+    width:100%;
+    display:block;
+    transition:0.4s;
+}
+
+.foto-card:hover img{
+    transform:scale(1.05);
+}
+
+.foto-legenda{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px 15px 15px;
+    background:linear-gradient(to top, rgba(0,0,0,.85), transparent);
+    opacity:0;
+    transform:translateY(10px);
+    transition:.3s ease;
+    text-align:left;
+    pointer-events:none;
+}
+
+.foto-card:hover .foto-legenda{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.foto-legenda strong{
+    display:block;
+    font-size:1rem;
+    letter-spacing:.5px;
+}
+
+.foto-legenda span{
+    display:block;
+    font-size:.85rem;
+    color:#ccc;
+    margin-top:2px;
+}
+
+/* =========================
+   CONTATO
+========================= */
+.contato-wrap{
+    display:flex;
+    justify-content:center;
+    padding:60px 8%;
+}
+
+.contato-container{
+    width:100%;
+    max-width:1000px;
+    background:#1a1a1a;
+    border-radius:20px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.contato-foto{
+    background:#222;
+    min-height:500px;
+    border-right:1px solid #333;
+}
+
+.contato-foto img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.contato-info{
+    padding:50px;
+}
+
+.contato-info h2{
+    margin-bottom:10px;
+    font-size:2.4rem;
+}
+
+.contato-info > p{
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+.info{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.item{
+    padding:15px;
+    background:#222;
+    border-radius:10px;
+}
+
+.item strong{
+    display:block;
+    margin-bottom:5px;
+    color:#fff;
+}
+
+.item span{
+    color:#bbb;
+}
+
+.redes{
+    margin-top:30px;
+}
+
+.redes a{
+    color:#fff;
+    text-decoration:none;
+    margin-right:15px;
+    transition:.3s;
+}
+
+.redes a:hover{
+    opacity:.7;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #222;
+    color:#777;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width:768px){
+    .contato-container{
+        grid-template-columns:1fr;
+    }
+
+    .contato-foto{
+        min-height:300px;
+        border-right:none;
+        border-bottom:1px solid #333;
+    }
+}
+
+@media (max-width:600px){
+    .hero h1{
+        letter-spacing:6px;
+    }
+
+    .slide-track img{
+        width:75vw;
+        min-width:260px;
+    }
+}
+.foto-corrigida img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: 25% 35%;
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+
+<header class="hero" id="home">
+
+    <div class="hero-slider" aria-hidden="true">
+        <div class="slide-track">
+            <img src="otimizadas/new-balance.webp" alt="">
+            <img src="otimizadas/adidascapa.webp" alt="">
+            <img src="otimizadas/spfw-58.webp" alt="">
+            <img src="otimizadas/formis1.webp" alt="">
+
+            <img src="otimizadas/new-balance.webp" alt="">
+            <img src="otimizadas/adidascapa.webp" alt="">
+            <img src="otimizadas/spfw-58.webp" alt="">
+            <img src="otimizadas/formis1.webp" alt="">
+        </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 class="font-titulo">VICTOR ZOZA</h1>
+        <p>Fotografia • Conteúdo • Direção Criativa</p>
+
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#sobre">SOBRE O VICTOR ZOZA</a>
+            <a href="#projetos">PROJETOS EM DESTAQUE</a>
+            <a href="#galeria">GALERIA</a>
+            <a href="#contato">CONTATO</a>
+        </nav>
+    </div>
+
+</header>
+
+
+<section class="sobre" id="sobre">
+    <div class="sobre-container">
+
+        <img src="otimizadas/sobre.webp" class="sobre-bg" alt="Victor Zoza" loading="lazy">
+
+        <div class="sobre-texto">
+            <h2 class="section-title font-titulo">Sobre o Victor Zoza</h2>
+            <p>
+                Sou formado em Economia e foi durante um intercâmbio em Paris que tive meu primeiro contato mais profundo com a fotografia. O que começou como um curso de fotografia para cinema, realizado por curiosidade durante essa experiência, acabou mudando a forma como eu imaginava minha trajetória profissional. Ao retornar ao Brasil, iniciei uma transição de carreira que se consolidou em 2020, quando passei a atuar profissionalmente no audiovisual. Desde então, construí minha formação principalmente por meio da prática, do estudo contínuo e da experiência adquirida em cada projeto. Além de cursos complementares, como fotografia de estúdio, meu maior processo de aprendizado sempre aconteceu no trabalho: observando, experimentando, refinando e evoluindo a partir da realidade de cada cliente. Ao longo desses anos, desenvolvi projetos para marcas, artistas e empresas, passando por editoriais de moda, campanhas, eventos, fotografia de produtos, retratos e produção de conteúdo. Essa diversidade de experiências ampliou meu olhar e fortaleceu uma forma de trabalhar que une direção criativa, fotografia e estratégia. Acredito que toda boa imagem começa muito antes da câmera. Ela nasce da observação, da compreensão do contexto e da intenção por trás de cada projeto. Meu trabalho é transformar essa leitura em fotografias e conteúdos que expressem identidade de forma verdadeira, ajudando pessoas e marcas a construírem presença por meio da imagem. Hoje, mais do que produzir fotografias, procuro compreender cada projeto antes de registrá-lo. É essa forma de trabalhar que orienta tudo o que faço.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="projetos">
+    <h2 class="section-title font-titulo">Projetos em Destaque</h2>
+
+    <div class="projetos-grid">
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DWzvDfNFg6Y/?img_index=1" target="_blank">
+                <img src="otimizadas/new-balance.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> New Balance 204L</strong>
+                <span>Backstage for @yumi.miyabara  e @authentic_feet</span>
+            </div>
+        </div>
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DBU015EOraN/" target="_blank">
+                <img src="otimizadas/spfw-58.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> SPFW 58'</strong>
+                <span> @lucasleao.co @heymakai @spfw</span>
+            </div>
+        </div>
+
+        
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DPENTMyEcq4/" target="_blank">
+                <img src="otimizadas/paixao.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> Enme Paixão</strong>
+                <span> @enmepaixao and @spotifybrasil</span>
+            </div>
+        </div>
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DOygne2kYy7/?img_index=1" target="_blank">
+                <img src="otimizadas/backstagegab.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> Gabriela Degan Jewelry</strong>
+                <span> backstage of new camp @gabrieladeganjewelry for @amosfonseca_</span>
+            </div>
+        </div>
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DWHo_17Fkuq/?img_index=1" target="_blank">
+                <img src="otimizadas/ashuacapa.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong>Ashua Curve Size and Lollapaloozabr</strong>
+                <span>@Lilla.marinho for @ashuacurvesize and @lollapaloozabr</span>
+            </div>
+        </div>
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DNDm1uVObwe/" target="_blank">
+                <img src="otimizadas/adidascapa.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> Adidas Brasil</strong>
+                <span>@fakefreitas_ for @adidasbrasil</span>
+            </div>
+        </div>
+
+        <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DKIVyBCu2No/" target="_blank">
+                <img src="otimizadas/thayscapa.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong>Thays Gondim</strong>
+                <span> peach blonde @thaysgondim_ @daniloherbert @truss</span>
+            </div>
+        </div>
+
+         <div class="projeto-card">
+            <a href="https://www.instagram.com/p/DOG9_PTESIA/?img_index=1"  target="_blank">
+                <img src="otimizadas/yumi1.webp" alt="Trabalho fotográfico" loading="lazy">
+            </a>
+            <div class="projeto-legenda">
+                <strong> Eudora </strong>
+                <span> @yumi.miyabara for @eudora</span>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<section class="galeria" id="galeria">
+    <h2 class="section-title font-titulo">Galeria</h2>
+
+    <div class="galeria-masonry">
+
+         <div class="foto-card">
+            <a href="penha.html" target="_blank"><img src="otimizadas/penha1.webp" alt="Foto 17" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>PENHA MAIA</strong>
+              
+            </div>
+        </div>
+
+
+        <div class="foto-card">
+            <a href="formis.html" target="_blank"><img src="otimizadas/formis1.webp" alt="Foto 01" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>FORMMIS SUMMER</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="ashua.html" target="_blank"><img src="otimizadas/ashua1.webp" alt="Foto 02" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>ASHUA CURVE SIZE</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="nuddy.html" target="_blank"><img src="otimizadas/nuddy1.webp" alt="Foto 03" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> NUDDY STUDIO </strong>
+                
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="bossa.html" target="_blank"><img src="otimizadas/bossa1.webp" alt="Foto 04" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>BACKSTGE FOR BOSSA MGT </strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="mad.html" target="_blank"><img src="otimizadas/madalena1.webp" alt="Foto 05" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>MOOD MADALENA</strong>
+              
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="bob.html" target="_blank"><img src="otimizadas/bob1.webp" alt="Foto 06" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> USE BOB</strong>
+              
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="cyber.html" target="_blank"><img src="otimizadas/cyber1.webp" alt="Foto 07" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>LOJA TRÊS</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="diarinho.html" target="_blank"><img src="otimizadas/diarinho1.webp" alt="Foto 08" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>Podcast Diarinho por Carol Figueiredo</strong>
+                
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="dj.html" target="_blank"><img src="otimizadas/dj1.webp" alt="Foto 09" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>DJ FILIPE GUERRA</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="adidas.html" target="_blank"><img src="otimizadas/adidas1.webp" alt="Foto 10" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> ADIDAS BRASIL</strong>
+              
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="fo.html" target="_blank"><img src="otimizadas/f1.webp" alt="Foto 11" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> FORMMIS 25 - IOU TIME</strong>
+              
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="after.html" target="_blank"><img src="otimizadas/after1.webp" alt="Foto 12" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>  DJ IDLIBRA</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="curves.html" target="_blank"><img src="otimizadas/curves1.webp" alt="Foto 13" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> LILLA MARINHO AND ELEGANCE ALL CURVES</strong>
+              
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="manu.html" target="_blank"><img src="otimizadas/manu1.webp" alt="Foto 14" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong> VICENZA </strong>
+                
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="may.html" target="_blank"><img src="otimizadas/may1.webp" alt="Foto 15" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>MAYBELLINE</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="melissa.html" target="_blank"><img src="otimizadas/melissa1.webp" alt="Foto 16" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>MELISSA</strong>
+               
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="tar.html" target="_blank"><img src="otimizadas/tarlazza1.webp" alt="Foto 18" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>VIRTUS ÓTICA</strong>
+            </div>
+        </div>
+
+        <div class="foto-card">
+            <a href="salve.html" target="_blank"><img src="otimizadas/salve1.webp" alt="Foto 18" loading="lazy"></a>
+            <div class="foto-legenda">
+                <strong>SALLVE</strong>
+            </div>
+        </div>
+
+        <div class="foto-card foto-corrigida">
+            <a href="co.html" target="_blank"><img src="otimizadas/collection.webp" alt="Foto 18" loading="lazy"></a>
+        <div class="foto-legenda">
+            <strong>COLLECTION ALIIS PROPRIS VOLAT</strong>
+        </div>
+</div>
+
+
+    </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="contato-wrap" id="contato">
+    <div class="contato-container">
+
+        <div class="contato-foto">
+            <img src="otimizadas/perfil.webp" alt="Foto de perfil" loading="lazy">
+        </div>
+
+        <div class="contato-info">
+            <h2 class="font-titulo">Contato</h2>
+            <p>Disponível para ensaios, eventos, campanhas e projetos visuais.</p>
+
+            <div class="info">
+                <div class="item">
+                    <strong>Email</strong>
+                    <span>zoza.victorr@gmail.com</span>
+                </div>
+
+                <div class="item">
+                    <strong>Telefone</strong>
+                    <span>11 9.1611-6868</span>
+                </div>
+
+                <div class="item">
+                    <strong>Localização</strong>
+                    <span>São Paulo - Brasil</span>
+                </div>
+            </div>
+
+            <div class="redes">
+                <a href="https://www.instagram.com/victorzoza__" target="_blank">Instagram</a>
+                <a href="https://wa.me/message/S36YSLLEW7NXE1" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 • Victor Souza • Todos os direitos reservados<br>
+    Site desenvolvido por Bruno Chacon.
+</footer>
+
+</body>
+</html>
